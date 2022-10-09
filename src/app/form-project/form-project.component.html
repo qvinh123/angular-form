@@ -1,0 +1,114 @@
+<div class="container">
+  <div class="row">
+    <form [formGroup]="formSignup" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <div class="col-md-12">
+          <label for="username">User</label>
+          <input [formControlName]="nameControls.username" type="text" class="form-control" id="username">
+          <small class="form-text text-danger" *ngIf="isControlValid(nameControls.username)">
+            {{messageErrorOfControl(nameControls.username)}}
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-12">
+          <label for="email">Email address</label>
+          <input [formControlName]="nameControls.email" type="email" class="form-control" id="email">
+          <small class="form-text text-danger" *ngIf="isControlValid(nameControls.email)">
+            {{messageErrorOfControl(nameControls.email)}}
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-12">
+          <label for="password">Password</label>
+          <input [formControlName]="nameControls.password" type="password" class="form-control" id="password">
+          <small class="form-text text-danger" *ngIf="isControlValid(nameControls.password)">
+            {{messageErrorOfControl(nameControls.password)}}
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-12">
+          <label for="confirmPassword">Confirm Password</label>
+          <input [formControlName]="nameControls.confirmPassword" type="password" class="form-control"
+            id="confirmPassword">
+          <small class="form-text text-danger" *ngIf="isControlValid(nameControls.confirmPassword)">
+            {{messageErrorOfControl(nameControls.confirmPassword)}}
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group" [formArrayName]="nameControls.phones">
+        <div class="col-md-9">
+          <label for="phone">Phone</label>
+          <div *ngFor="let phone of phones.controls; index as i">
+            <input [formControlName]="i" type="tel" class="form-control" [id]="'phone ' + i">
+            <small class="form-text text-danger" *ngIf="isControlValid(nameControls.phones+'.'+i)">
+              {{messageErrorOfControl(nameControls.phones+'.'+i)}}
+            </small>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-success" type="button" (click)="addPhone()">Add</button>
+        </div>
+      </div>
+
+      <div class="form-group" [formGroupName]="nameControls.address">
+        <div class="col-md-6">
+          <label for="street" class="control-label required">Address</label>
+          <input [formControlName]="nameControls.street1" type="text" id="street" class="form-control">
+          <small class="form-text text-danger" *ngIf="isControlValid(nameControls.address+'.'+nameControls.street1)">
+            {{messageErrorOfControl(nameControls.address+'.'+nameControls.street1)}}
+          </small>
+        </div>
+
+        <div class="col-md-3">
+          <label for="street2" class="control-label">Address 2</label>
+          <input type="text" [formControlName]="nameControls.street2" id="street2" class="form-control">
+          <small class="form-text text-danger" *ngIf="isControlValid(nameControls.address+'.'+nameControls.street2)">
+            {{messageErrorOfControl(nameControls.address+'.'+nameControls.street2)}}
+          </small>
+        </div>
+
+        <div class="col-md-3">
+          <label for="zipCode" class="control-label required">Zip Code</label>
+          <input type="text" [formControlName]="nameControls.zipCode" id="zipCode" class="form-control">
+          <small class="form-text text-danger" *ngIf="isControlValid(nameControls.address+'.'+nameControls.zipCode)">
+            {{messageErrorOfControl(nameControls.address+'.'+nameControls.zipCode)}}
+          </small>
+        </div>
+
+        <div class="col-md-4">
+          <label for="city" class="control-label required">City</label>
+          <input [formControlName]="nameControls.city" type="text" id="city" class="form-control">
+          <small class="form-text text-danger" *ngIf="isControlValid(nameControls.address+'.'+nameControls.city)">
+            {{messageErrorOfControl(nameControls.address+'.'+nameControls.city)}}
+          </small>
+        </div>
+
+        <div class="col-md-4">
+          <label for="state" class="control-label required">State / Province / Region</label>
+          <input type="text" id="state" [formControlName]="nameControls.state" class="form-control">
+          <small class="form-text text-danger" *ngIf="isControlValid(nameControls.address+'.'+nameControls.state)">
+            {{messageErrorOfControl(nameControls.address+'.'+nameControls.state)}}
+          </small>
+        </div>
+
+        <div class="col-md-4">
+          <label for="country" class="control-label required">Country</label>
+          <input type="text" id="country" [formControlName]="nameControls.country" class="form-control">
+          <small class="form-text text-danger" *ngIf="isControlValid(nameControls.address+'.'+nameControls.country)">
+            {{messageErrorOfControl(nameControls.address+'.'+nameControls.country)}}
+          </small>
+        </div>
+      </div>
+      <div class="text-center">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    </form>
+  </div>
+</div>
